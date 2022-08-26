@@ -5,15 +5,13 @@
     outline: 1px solid black;
 }
 
-header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 60pt;
-    color: white;
-    letter-spacing: 1.3px;
-    background-color: rgb(135, 75, 75);
-    height: 20vh;
+main{
+    height: 80vh;
+    background-color: rgba(209, 128, 57, 0.497);
+}
+footer{
+    background-color: gray;
+    height: 15vh;
 }
 .container{
     display: flex;
