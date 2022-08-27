@@ -14,24 +14,59 @@ let b=Number(lastScreen.textContent);
 
 for (let i=0;i<numbers.length;i++){
    numbers[i].addEventListener("click",()=>{
-   lastScreen.textContent +=numbers[i].textContent;
+      if(firstScreen.textContent==="0"){
+         firstScreen.textContent=numbers[i].textContent;
+      }else{
+         firstScreen.textContent+=numbers[i].textContent;
+      }
    })
 }
 
-function addition() {
-  let a =firstScreen.textContent;
-  let b = lastScreen.textContent;
-  let output = Number(a)+Number(b)
-  lastScreen.textContent=output;
-  firstScreen.textContent=b;
-  console.log(a);
-  console.log(b);
-  console.log(output);
+plus.onclick=()=>{
+   let a = lastScreen.textContent.split(" ");
+   if(a.length===2){
+      if (a[1]==="+") {
+         let output= Number(a[0]) +Number(firstScreen.textContent);
+         firstScreen.textContent="";
+         lastScreen.textContent=output + " +"
+      }else if(a[1]==="-"){
+         let output= Number(a[0]) - Number(firstScreen.textContent);
+            firstScreen.textContent="";
+            lastScreen.textContent=output + " +"
+      }
+   }else{
+      let output= Number(a[0]) +Number(firstScreen.textContent);
+      firstScreen.textContent="";
+      lastScreen.textContent=output + " +"
+   }
 }
-plus.onclick=()=>addition();
-equal.onclick=()=>equals();
 
-function equals(){
- let demo=  Number(lastScreen.textContent);
-    firstScreen.textContent=demo;
+minus.onclick=()=>{
+   let a = lastScreen.textContent.split(" ");
+   if (a.length===2) {
+      if(a[1]==="-"){
+         let output= Number(a[0]) - Number(firstScreen.textContent);
+         firstScreen.textContent="";
+         lastScreen.textContent=output + " -";
+      }
+      else if(a[1]==="+"){
+         let output= Number(a[0]) +Number(firstScreen.textContent);
+         firstScreen.textContent="";
+         lastScreen.textContent=output + " +"
+      }
+      
+   }else{
+   let output= Number(a[0]) - Number(firstScreen.textContent);
+   firstScreen.textContent="";
+   lastScreen.textContent=output + " -";
+   }
 }
+
+multiply.onclick=()=>{
+   let a = lastScreen.textContent.split(" ");
+   let output= (Number(a[0]) * Number(firstScreen.textContent));
+   firstScreen.textContent="";
+   lastScreen.textContent=output + " *"
+}
+
+divide.onclick=()=>{}
