@@ -6,13 +6,9 @@ let plus = document.getElementById("plus");
 let minus = document.getElementById("minus");
 let multiply = document.getElementById("multiply");
 let divide = document.getElementById("divide");
-let openParenthises = document.getElementById("open-parenthises");
-let closeParenthises = document.getElementById("close-parenthises");
 let clBtn = document.getElementById("clBtn");
-
-
-let a =Number(firstScreen.textContent);
-let b=Number(lastScreen.textContent);
+let returnArrow=document.getElementById("return-arrow");
+let modulus=document.getElementById("modulus");
 
 for (let i=0;i<numbers.length;i++){
    numbers[i].addEventListener("click",()=>{
@@ -26,7 +22,11 @@ for (let i=0;i<numbers.length;i++){
 
 plus.onclick=()=>{
    let a = lastScreen.textContent.split(" ");
-   if(a.length===2){
+   console.log(a);
+   if (a.length > 2) {
+      lastScreen.textContent=firstScreen.textContent+ " +";
+      firstScreen.textContent="";
+   }else if(a.length===2){
       if (a[1]==="+") {
          let output= Number(a[0]) +Number(firstScreen.textContent);
          firstScreen.textContent="";
@@ -67,7 +67,10 @@ plus.onclick=()=>{
 
 minus.onclick=()=>{
    let a = lastScreen.textContent.split(" ");
-   if (a.length===2) {
+   if (a.length > 2) {
+      lastScreen.textContent=firstScreen.textContent+ " -";
+      firstScreen.textContent="";
+   }else if (a.length===2) {
       if(a[1]==="-"){
          let output= Number(a[0]) - Number(firstScreen.textContent);
          firstScreen.textContent="";
@@ -107,7 +110,10 @@ minus.onclick=()=>{
 
 multiply.onclick=()=>{
    let a = lastScreen.textContent.split(" ");
-   if(a.length===2){
+   if (a.length > 2) {
+      lastScreen.textContent=firstScreen.textContent+ " *";
+      firstScreen.textContent="";
+   }else if(a.length===2){
       if(a[1]==="+"){
          let output= Number(a[0]) +Number(firstScreen.textContent);
          firstScreen.textContent="";
@@ -154,7 +160,10 @@ multiply.onclick=()=>{
 
 divide.onclick=()=>{
    let a = lastScreen.textContent.split(" ");
-   if(a.length===2){
+   if (a.length > 2) {
+      lastScreen.textContent=firstScreen.textContent+ " /";
+      firstScreen.textContent="";
+   }else if(a.length===2){
       if (a[1]==="+") {
          let output= Number(a[0]) +Number(firstScreen.textContent);
          firstScreen.textContent="";
@@ -191,4 +200,83 @@ divide.onclick=()=>{
 clBtn.onclick=()=>{
    firstScreen.textContent="0";
    lastScreen.textContent="";
+}
+
+modulus.onclick=()=>{
+   let a = lastScreen.textContent.split(" ");
+   console.log(a);
+   if (a.length > 2) {
+      lastScreen.textContent=firstScreen.textContent+ " %";
+      firstScreen.textContent="";
+   }else if(a.length===2){
+      if (a[1]==="+") {
+         let output= Number(a[0]) +Number(firstScreen.textContent);
+         firstScreen.textContent="";
+         lastScreen.textContent=output + " %"
+      }else if(a[1]==="-"){
+         let output= Number(a[0]) - Number(firstScreen.textContent);
+            firstScreen.textContent="";
+            lastScreen.textContent=output + " %"
+      }
+      else if(a[1]==="*"){
+         if(firstScreen.textContent!==""){
+         let output= Number(a[0]) * Number(firstScreen.textContent);
+            firstScreen.textContent="";
+            lastScreen.textContent=output + " %";
+         }else{
+            return lastScreen.textContent= a[0]+" %";
+         }
+      }
+      else if(a[1]==="/"){
+         if (firstScreen.textContent!=="" && Number(firstScreen.textContent)!==0){
+         let output= Number(a[0]) / Number(firstScreen.textContent);
+            firstScreen.textContent="";
+            lastScreen.textContent=output + " %";
+         }else{
+            lastScreen.textContent="";
+            firstScreen.textContent="ERROR:Can't divide by 0"
+         }
+      }
+   }else{
+      if(firstScreen.textContent ==="0" && lastScreen.textContent===""){
+         return ;
+      }
+      let output= Number(a[0]) +Number(firstScreen.textContent);
+      firstScreen.textContent="";
+      lastScreen.textContent=output + " %"
+   }
+}
+returnArrow.onclick=()=>{
+   let something = firstScreen.textContent.split("");
+   something.pop();
+   let result="";
+   for(let i =0; i<=something.length-1;i++){
+      result += something[i];
+   }
+   firstScreen.textContent=result;
+}
+
+equal.onclick=()=>{
+   let a =lastScreen.textContent.split(" ");
+   if(a[1]==="+"){
+      let output=Number(a[0]) + Number(firstScreen.textContent);
+      lastScreen.textContent=a[0] +" + "+ firstScreen.textContent+" = ";
+      firstScreen.textContent=output;
+   }else  if(a[1]==="-"){
+      let output=Number(a[0]) - Number(firstScreen.textContent);
+      lastScreen.textContent=a[0] +" - "+ firstScreen.textContent+" = ";
+      firstScreen.textContent=output;
+   }else  if(a[1]==="*"){
+      let output=Number(a[0]) * Number(firstScreen.textContent);
+      lastScreen.textContent=a[0] +" * "+ firstScreen.textContent+" = ";
+      firstScreen.textContent=output;
+   }else  if(a[1]==="/"){
+      let output=Number(a[0]) / Number(firstScreen.textContent);
+      lastScreen.textContent=a[0] +" / "+ firstScreen.textContent+" = ";
+      firstScreen.textContent=output;
+   }else  if(a[1]==="%"){
+      let output=Number(a[0]) % Number(firstScreen.textContent);
+      lastScreen.textContent=a[0] +" % "+ firstScreen.textContent+" = ";
+      firstScreen.textContent=output;
+   }
 }
