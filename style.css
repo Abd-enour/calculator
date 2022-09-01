@@ -2,24 +2,22 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    outline: 1px solid black;
 }
 
 main{
-    height: 80vh;
+    display: flex;
+    height: 94vh;
     background-color: rgba(209, 128, 57, 0.497);
-}
-footer{
-    background-color: gray;
-    height: 15vh;
+    align-items: center;
 }
 .container{
     display: flex;
     flex-wrap: wrap;
-    width: 245px;
+    width: 280px;
     margin: 20px auto;
     align-items: center;
-    background-color: yellow;
+    background-color: #7c7c71;
+    border-radius: 15px;
 
 }
 #screen{
@@ -29,28 +27,31 @@ footer{
     align-items: flex-end;
     justify-content: flex-end;
     width: 100%;
-    max-width: 220px;
+    max-width: 241px;
     background-color: rgb(209, 209, 209);
     margin: 5px auto;
-    border-radius: 5px;
+    border-radius: 15px;
     margin: 12px auto 3px auto;
     height: 60px;
 }
 #first-screen{
-    font-size: 20px;
+    position: absolute;
+    top: 25px;
+    right: 6px;
+    font-size: 22px;
 
 }
 #last-screen{
     position: absolute;
     top: 5px;
-    right: 5px;
-    font-size: 12px;
+    right: 6px;
+    font-size: 16px;
 }
 
 #number-bloc{
     display: grid;
-    grid-template-columns: repeat(4,50px);
-    grid-template-rows: repeat(6,50px);
+    grid-template-columns: repeat(4,55px);
+    grid-template-rows: repeat(5,55px);
     justify-content: center;
     width: 100%;
     height: 100%;
@@ -70,4 +71,26 @@ button{
 .pink{
     background-color: pink;
     color: red;
+}
+/* *************** styling the footer ******************* */
+footer{
+    display: flex;
+    font-size: 20px;
+    background-color: #524f4f;
+    color: #ffff;
+    height: 6vh;
+    justify-content: center;
+    align-items: center;
+}
+footer >a{
+    text-decoration: none;
+    background-color: #524f4f;
+}
+#github-logo{
+    background-color: white;
+    transition: transform 0.3s;
+}
+#github-logo:hover{
+    transform: rotate(360deg);
+    
 }

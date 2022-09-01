@@ -46,10 +46,14 @@ plus.onclick=()=>{
          }
       }
       else if(a[1]==="/"){
-         if (firstScreen.textContent!=="" && Number(firstScreen.textContent)!==0){
+         if(firstScreen.textContent==="0"){
+               firstScreen.textContent="ERROR:can't divide by 0";
+         }else if (firstScreen.textContent!==""){
          let output= Number(a[0]) / Number(firstScreen.textContent);
             firstScreen.textContent="";
             lastScreen.textContent=output + " +";
+         }else if(firstScreen.textContent===""){
+            return ;
          }else{
             lastScreen.textContent="";
             firstScreen.textContent="ERROR:Can't divide by 0"
@@ -88,13 +92,15 @@ minus.onclick=()=>{
             return lastScreen.textContent= a[0]+" +";
          }
       }else if(a[1]==="/"){
-         if(firstScreen.textContent!=="" && Number(firstScreen.textContent)!==0){
+         if(firstScreen.textContent==="0"){
+            lastScreen.textContent="";
+            firstScreen.textContent="ERROR:can't divide by 0";
+         }else if(firstScreen.textContent!==""){
             let output= Number(a[0])/Number(firstScreen.textContent);
             firstScreen.textContent="";
             lastScreen.textContent=output+" /";
          }else{
-            lastScreen.textContent="";
-            firstScreen.textContent="ERROR:can't divide by 0";
+            return ;
          }
       }
       
@@ -130,13 +136,14 @@ multiply.onclick=()=>{
          lastScreen.textContent=output + " *"
       }
       else if (a[1]==="/") {
-         if(firstScreen.textContent!=="" && Number(firstScreen.textContent)!==0){
+         if(firstScreen.textContent==="0"){
+               firstScreen.textContent="ERROR:can't divide by 0";
+         }else if(firstScreen.textContent!==""){
             let output= Number(a[0])/Number(firstScreen.textContent);
             firstScreen.textContent="";
             lastScreen.textContent=output+" /";
          }else{
-            lastScreen.textContent="";
-            firstScreen.textContent="ERROR:can't divide by 0";
+            return ;
          }
       }
    }else{
@@ -177,13 +184,15 @@ divide.onclick=()=>{
          firstScreen.textContent="";
          lastScreen.textContent=output + " /"
       }else if(a[1]==="/"){
-         if(firstScreen.textContent!=="" && Number(firstScreen.textContent)!==0){
+         if(firstScreen.textContent==="0"){
+               firstScreen.textContent="ERROR:can't divide by 0";
+               lastScreen.textContent="";
+         }else if(firstScreen.textContent!==""){
             let output= Number(a[0])/Number(firstScreen.textContent);
             firstScreen.textContent="";
             lastScreen.textContent=output+" /";
          }else{
-            lastScreen.textContent="";
-            firstScreen.textContent="ERROR:can't divide by 0";
+            return ;
          }
       }
 
@@ -228,13 +237,15 @@ modulus.onclick=()=>{
          }
       }
       else if(a[1]==="/"){
-         if (firstScreen.textContent!=="" && Number(firstScreen.textContent)!==0){
+         if(firstScreen.textContent==="0"){
+               lastScreen.textContent="";
+               firstScreen.textContent="ERROR:can't divide by 0";
+         }else if (firstScreen.textContent!==""){
          let output= Number(a[0]) / Number(firstScreen.textContent);
             firstScreen.textContent="";
             lastScreen.textContent=output + " %";
          }else{
-            lastScreen.textContent="";
-            firstScreen.textContent="ERROR:Can't divide by 0"
+            return ;
          }
       }
    }else{
