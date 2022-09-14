@@ -291,3 +291,10 @@ equal.onclick=()=>{
       firstScreen.textContent=output;
    }
 }
+
+let closeHistory= document.getElementById("close-history");
+let history= document.getElementsByClassName("calc-history")[0];
+
+closeHistory.onclick=()=>{
+   history.style.width="0px";
+};

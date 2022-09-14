@@ -12,30 +12,38 @@
 <body>
     <main>
         <div class="container">
-            <div id="screen">
-                <div id="last-screen"></div>
-                <div id="first-screen">0</div>
+            <div id="calculator">
+                <span id="show-history"></span>
+                <div id="screen">
+                    <div id="last-screen"></div>
+                    <div id="first-screen">0</div>
+                </div>
+                <div id="number-bloc">
+                        <button type="submit" class="btn pink" id="clBtn">C</button>
+                        <button type="submit" class="btn pink" id="return-arrow">&#8630;</button>
+                        <button type="submit" class="btn pink" id="modulus">%</button>
+                        <button type="submit" class="btn pink" id="divide"> &#247</button>
+                        <button type="submit" class="btn nbr">7</button>
+                        <button type="submit" class="btn nbr">8</button>
+                        <button type="submit" class="btn nbr">9</button>
+                        <button type="submit" class="btn pink" id="multiply">x</button>
+                        <button type="submit" class="btn nbr">4</button>
+                        <button type="submit" class="btn nbr">5</button>
+                        <button type="submit" class="btn nbr">6</button>
+                        <button type="submit" class="btn pink" id="minus">-</button>
+                        <button type="submit" class="btn nbr">1</button>
+                        <button type="submit" class="btn nbr">2</button>
+                        <button type="submit" class="btn nbr">3</button>
+                        <button type="submit" class="btn pink" id="plus">+</button>
+                        <button type="submit" class="btn nbr">0</button>
+                        <button type="submit" class="btn nbr">.</button>
+                        <button type="submit" class="btn" id="equal">=</button>
+                </div>
             </div>
-            <div id="number-bloc">
-                    <button type="submit" class="btn pink" id="clBtn">C</button>
-                    <button type="submit" class="btn pink" id="return-arrow">&#8630;</button>
-                    <button type="submit" class="btn pink" id="modulus">%</button>
-                    <button type="submit" class="btn pink" id="divide"> &#247</button>
-                    <button type="submit" class="btn nbr">7</button>
-                    <button type="submit" class="btn nbr">8</button>
-                    <button type="submit" class="btn nbr">9</button>
-                    <button type="submit" class="btn pink" id="multiply">x</button>
-                    <button type="submit" class="btn nbr">4</button>
-                    <button type="submit" class="btn nbr">5</button>
-                    <button type="submit" class="btn nbr">6</button>
-                    <button type="submit" class="btn pink" id="minus">-</button>
-                    <button type="submit" class="btn nbr">1</button>
-                    <button type="submit" class="btn nbr">2</button>
-                    <button type="submit" class="btn nbr">3</button>
-                    <button type="submit" class="btn pink" id="plus">+</button>
-                    <button type="submit" class="btn nbr">0</button>
-                    <button type="submit" class="btn nbr">.</button>
-                    <button type="submit" class="btn" id="equal">=</button>
+            <div class="calc-history">
+                <div id="close-history">
+                    <abbr title="close history"> &times; </abbr>
+                </div>
             </div>
         </div>
     </main>
