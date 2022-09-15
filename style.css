@@ -6,6 +6,11 @@
 :root{
 --btnWidth:60px;
 --btnHeight:60px;
+--container-width:600px;
+--container-heigth:440px;
+}
+.visibility{
+    visibility: hidden;
 }
 main{
     display: flex;
@@ -16,39 +21,53 @@ main{
 .container{
     display: flex;
     flex-wrap: wrap;
-    width: 546px;
+    width: var(--container-width);
     margin: 20px auto;
     align-items: center;
-    background-color: #7c7c71;
-    border-radius: 15px;
 
 }
 #show-history{
     text-align: end;
+    width: 35px;
+    height: 31px;
+    align-self: flex-end;
+    padding: 0px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-right: 9px;
+}
+#show-history  div{
+    border: 2px solid black;
+    margin: 4px 0px;
+    border-radius: 10px;
+    background-color: black;
 }
 #calculator{
     display: flex;
     flex-direction: column;
+    height: var(--container-heigth);
+    width: calc(var(--container-width)/2);
+    background-color: #7c7c71;
+    border-radius: 15px;
 }
 .calc-history{
-    background-color: white;
-    width: 286px;
-    height: 393px;
+    background-color: inherit;
+    width: calc(var(--container-width)/2);
+    height: var(--container-heigth);
     z-index: 100;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    border-left: 2px dotted black;
     /* overflow-y: scroll; */
     position: relative;
 }
 #close-history{
     width: 30px;
     height: 30px;
-    background-color: red;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 3em;
+    cursor: pointer;
 }
 abbr{
     text-decoration: none;
@@ -60,16 +79,16 @@ abbr{
     align-items: flex-end;
     justify-content: flex-end;
     width: 100%;
-    max-width: 241px;
+    max-width: 250px;
     background-color: rgb(209, 209, 209);
     margin: 5px auto;
     border-radius: 15px;
     margin: 12px auto 3px auto;
-    height: 60px;
+    height: 70px;
 }
 #first-screen{
     position: absolute;
-    top: 25px;
+    top: 35px;
     right: 6px;
     font-size: 22px;
 
@@ -85,11 +104,18 @@ abbr{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 260px;
+    width: 300px;
 }
 .btn{
     width: var(--btnWidth);
     height: var(--btnHeight);
+    margin: 2px;
+    border: 1px solid;
+    cursor: pointer;
+}
+.btn:active{
+    background-color: gray;
+    color: white;
 }
 button{
     border-radius: 35%;
@@ -100,6 +126,10 @@ button{
     border-radius: 25px;
     background-color: rgb(99, 97, 249);
     color: white;
+    font-size: 35px;
+}
+#equal:active{
+    background-color: rgb(36, 225, 36);
 }
 .pink{
     background-color: pink;
