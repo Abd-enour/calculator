@@ -295,6 +295,23 @@ equal.onclick=()=>{
       firstScreen.textContent=output;
    }
 }
+equal.addEventListener("click",()=>{
+   let div=document.createElement("div");
+   div.setAttribute("class","row-history");
+   for(let i=1;i<=3;i++){
+   let p=document.createElement("p");
+      if(i==1){
+         p.textContent=lastScreen.textContent;
+      }else if(i==2){
+         p.textContent=firstScreen.textContent;
+      }else{
+
+      }
+      div.appendChild(p);
+   }
+   history.appendChild(div);
+
+});
 
 closeHistory.onclick=()=>{
    history.style.width="0px";
