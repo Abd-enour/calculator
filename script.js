@@ -14,6 +14,7 @@ let history= document.getElementsByClassName("calc-history")[0];
 let showHistory=document.getElementById("show-history");
 let calContainer=document.getElementById("calculator");
 
+
 for (let i=0;i<numbers.length;i++){
    numbers[i].addEventListener("click",()=>{
       if(firstScreen.textContent==="0"){
@@ -24,10 +25,9 @@ for (let i=0;i<numbers.length;i++){
    })
 }
 
-plus.onclick=()=>{
+plus.onclick=()=>{ 
    let a = lastScreen.textContent.split(" ");
-   console.log(a);
-   if (a.length > 2) {
+   if (a.length > 2) { 
       lastScreen.textContent=firstScreen.textContent+ " +";
       firstScreen.textContent="";
    }else if(a.length===2){
@@ -211,8 +211,9 @@ divide.onclick=()=>{
 }
 
 clBtn.onclick=()=>{
-   firstScreen.textContent="0";
-   lastScreen.textContent="";
+   // firstScreen.textContent="0";
+   // lastScreen.textContent="";
+  location.reload();
 }
 
 modulus.onclick=()=>{
@@ -295,36 +296,35 @@ equal.onclick=()=>{
       firstScreen.textContent=output;
    }
 }
-equal.addEventListener("click",()=>{
+
+equal.addEventListener("click",createHistory);
+
+closeHistory.onclick=()=>{
+   history.style.width="0px";
+   history.classList.add("visibility");
+   closeHistory.classList.add("visibility");
+   showHistory.classList.remove("visibility");
+   calContainer.style.cssText="border-top-right-radius:15px ;border-bottom-right-radius:15px";
+};
+
+showHistory.onclick=()=>{
+   history.style.cssText="width:286px;background-color:#76a3dad6";
+   history.classList.remove("visibility");
+   showHistory.classList.add("visibility");
+   closeHistory.classList.remove("visibility");
+   calContainer.style.cssText="border-top-right-radius:0px ;border-bottom-right-radius:0px";
+};
+function createHistory(){
    let div=document.createElement("div");
    div.setAttribute("class","row-history");
-   for(let i=1;i<=3;i++){
+   for(let i=1;i<=2;i++){
    let p=document.createElement("p");
       if(i==1){
          p.textContent=lastScreen.textContent;
       }else if(i==2){
          p.textContent=firstScreen.textContent;
-      }else{
-
       }
       div.appendChild(p);
    }
    history.appendChild(div);
-
-});
-
-closeHistory.onclick=()=>{
-   history.style.width="0px";
-   closeHistory.classList.add("visibility");
-   showHistory.classList.remove("visibility");
-   calContainer.style.cssText="border-top-right-radius:15px ;border-bottom-right-radius:15px";
-
-
-};
-
-showHistory.onclick=()=>{
-   history.style.cssText="width:286px;background-color:#76a3dad6";
-   showHistory.classList.add("visibility");
-   closeHistory.classList.remove("visibility");
-   calContainer.style.cssText="border-top-right-radius:0px ;border-bottom-right-radius:0px";
-};
+}
