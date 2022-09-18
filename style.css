@@ -57,7 +57,7 @@ main{
     z-index: 100;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
     position: relative;
 }
 .calc-history > p{
@@ -184,3 +184,25 @@ footer >a{
     transform: rotate(360deg);
     
 }
+
+
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

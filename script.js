@@ -24,244 +24,49 @@ for (let i=0;i<numbers.length;i++){
       }
    })
 }
-
-plus.onclick=()=>{ 
-   let a = lastScreen.textContent.split(" ");
-   if (a.length > 2) { 
-      lastScreen.textContent=firstScreen.textContent+ " +";
-      firstScreen.textContent="";
-   }else if(a.length===2){
-      if (a[1]==="+") {
-         let output= Number(a[0]) +Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " +"
-      }else if(a[1]==="-"){
-         let output= Number(a[0]) - Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output + " +"
-      }
-      else if(a[1]==="*"){
-         if(firstScreen.textContent!==""){
-         let output= Number(a[0]) * Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output + " +";
-         }else{
-            return lastScreen.textContent= a[0]+" +";
-         }
-      }
-      else if(a[1]==="/"){
-         if(firstScreen.textContent==="0"){
-               firstScreen.textContent="ERROR:can't divide by 0";
-         }else if (firstScreen.textContent!==""){
-         let output= Number(a[0]) / Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output + " +";
-         }else if(firstScreen.textContent===""){
-            return ;
-         }else{
-            lastScreen.textContent="";
-            firstScreen.textContent="ERROR:Can't divide by 0"
-         }
-      }
-   }else{
-      if(firstScreen.textContent ==="0" && lastScreen.textContent===""){
-         return ;
-      }
-      let output= Number(a[0]) +Number(firstScreen.textContent);
-      firstScreen.textContent="";
-      lastScreen.textContent=output + " +"
+function operators(operator){ 
+   if (lastScreen.textContent==="" && firstScreen.textContent!=="") {
+      lastScreen.textContent=lastScreen.textContent+ firstScreen.textContent+operator;
+      firstScreen.textContent="0";
+   }else if(firstScreen.textContent==="0" || firstScreen.textContent==="" &&
+            lastScreen.textContent !==""){
+            let lastScreenArray=lastScreen.textContent.split(" ");
+            if(lastScreenArray[lastScreenArray.length-1]!==operator){
+            lastScreenArray[lastScreenArray.length-1]=operator;
+            lastScreen.textContent= lastScreenArray.join(" ");
    }
+   }else{
+      lastScreen.textContent+=" "+firstScreen.textContent+operator;
+      firstScreen.textContent="0";
+         
+   }
+}
+
+plus.onclick=()=>{
+   operators(" +");
 }
 
 minus.onclick=()=>{
-   let a = lastScreen.textContent.split(" ");
-   if (a.length > 2) {
-      lastScreen.textContent=firstScreen.textContent+ " -";
-      firstScreen.textContent="";
-   }else if (a.length===2) {
-      if(a[1]==="-"){
-         let output= Number(a[0]) - Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " -";
-      }
-      else if(a[1]==="+"){
-         let output= Number(a[0]) +Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " -"
-      }else if(a[1]==="*"){if(firstScreen.textContent!==""){
-         let output= Number(a[0]) * Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output + " +";
-         }else{
-            return lastScreen.textContent= a[0]+" +";
-         }
-      }else if(a[1]==="/"){
-         if(firstScreen.textContent==="0"){
-            lastScreen.textContent="";
-            firstScreen.textContent="ERROR:can't divide by 0";
-         }else if(firstScreen.textContent!==""){
-            let output= Number(a[0])/Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output+" /";
-         }else{
-            return ;
-         }
-      }
-      
-   }else{
-      if(firstScreen.textContent ==="0" && lastScreen.textContent===""){
-         return ;
-      }
-      let output= Number(firstScreen.textContent) - Number(a[0]);
-      firstScreen.textContent="";
-      lastScreen.textContent=output + " -";
-   }
+   operators(" -");
 }
 
 multiply.onclick=()=>{
-   let a = lastScreen.textContent.split(" ");
-   if (a.length > 2) {
-      lastScreen.textContent=firstScreen.textContent+ " *";
-      firstScreen.textContent="";
-   }else if(a.length===2){
-      if(a[1]==="+"){
-         let output= Number(a[0]) +Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " *"
-      }
-      else if (a[1]==="-") {
-         let output= Number(a[0]) -Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " *"   
-      }
-      else if (a[1]==="*") {
-         let output= Number(a[0]) *Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " *"
-      }
-      else if (a[1]==="/") {
-         if(firstScreen.textContent==="0"){
-               firstScreen.textContent="ERROR:can't divide by 0";
-         }else if(firstScreen.textContent!==""){
-            let output= Number(a[0])/Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output+" /";
-         }else{
-            return ;
-         }
-      }
-   }else{
-   if(firstScreen.textContent ==="0" && lastScreen.textContent===""){
-      return ;
-   } else{ 
-      if(lastScreen.textContent!=="" && firstScreen.textContent===""){
-         return ;
-      }else if(lastScreen.textContent==="" && firstScreen.textContent!==""){
-         lastScreen.textContent=firstScreen.textContent + " *";
-         firstScreen.textContent="";
-      }
-      else{
-         let output= (Number(a[0]) * Number(firstScreen.textContent));
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " *";
-      }
-}
-   }
+   operators(" *")
 }
 
 divide.onclick=()=>{
-   let a = lastScreen.textContent.split(" ");
-   if (a.length > 2) {
-      lastScreen.textContent=firstScreen.textContent+ " /";
-      firstScreen.textContent="";
-   }else if(a.length===2){
-      if (a[1]==="+") {
-         let output= Number(a[0]) +Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " /";
-      }else if(a[1]==="-"){
-         let output= Number(a[0]) - Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " /";
-      }else if(a[1]==="*"){
-         let output= Number(a[0]) *Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " /"
-      }else if(a[1]==="/"){
-         if(firstScreen.textContent==="0"){
-               firstScreen.textContent="ERROR:can't divide by 0";
-               lastScreen.textContent="";
-         }else if(firstScreen.textContent!==""){
-            let output= Number(a[0])/Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output+" /";
-         }else{
-            return ;
-         }
-      }
-
-   }else{
-      if(lastScreen.textContent==="" && firstScreen.textContent===""){
-         return ;
-      }else if(firstScreen.textContent!==""){
-         lastScreen.textContent=firstScreen.textContent+ " /";
-         firstScreen.textContent="";
-      }
-   }
-}
-
-clBtn.onclick=()=>{
-   // firstScreen.textContent="0";
-   // lastScreen.textContent="";
-  location.reload();
+   operators(" /")
 }
 
 modulus.onclick=()=>{
-   let a = lastScreen.textContent.split(" ");
-   console.log(a);
-   if (a.length > 2) {
-      lastScreen.textContent=firstScreen.textContent+ " %";
-      firstScreen.textContent="";
-   }else if(a.length===2){
-      if (a[1]==="+") {
-         let output= Number(a[0]) +Number(firstScreen.textContent);
-         firstScreen.textContent="";
-         lastScreen.textContent=output + " %"
-      }else if(a[1]==="-"){
-         let output= Number(a[0]) - Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output + " %"
-      }
-      else if(a[1]==="*"){
-         if(firstScreen.textContent!==""){
-         let output= Number(a[0]) * Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output + " %";
-         }else{
-            return lastScreen.textContent= a[0]+" %";
-         }
-      }
-      else if(a[1]==="/"){
-         if(firstScreen.textContent==="0"){
-               lastScreen.textContent="";
-               firstScreen.textContent="ERROR:can't divide by 0";
-         }else if (firstScreen.textContent!==""){
-         let output= Number(a[0]) / Number(firstScreen.textContent);
-            firstScreen.textContent="";
-            lastScreen.textContent=output + " %";
-         }else{
-            return ;
-         }
-      }
-   }else{
-      if(firstScreen.textContent ==="0" && lastScreen.textContent===""){
-         return ;
-      }
-      let output= Number(a[0]) +Number(firstScreen.textContent);
-      firstScreen.textContent="";
-      lastScreen.textContent=output + " %"
-   }
+   operators(" %")
 }
+
+clBtn.onclick=()=>{
+   firstScreen.textContent="0";
+   lastScreen.textContent="";
+}
+
 returnArrow.onclick=()=>{
    let something = firstScreen.textContent.split("");
    something.pop();
@@ -273,31 +78,39 @@ returnArrow.onclick=()=>{
 }
 
 equal.onclick=()=>{
-   let a =lastScreen.textContent.split(" ");
-   if(a[1]==="+"){
-      let output=Number(a[0]) + Number(firstScreen.textContent);
-      lastScreen.textContent=a[0] +" + "+ firstScreen.textContent+" = ";
-      firstScreen.textContent=output;
-   }else  if(a[1]==="-"){
-      let output=Number(a[0]) - Number(firstScreen.textContent);
-      lastScreen.textContent=a[0] +" - "+ firstScreen.textContent+" = ";
-      firstScreen.textContent=output;
-   }else  if(a[1]==="*"){
-      let output=Number(a[0]) * Number(firstScreen.textContent);
-      lastScreen.textContent=a[0] +" * "+ firstScreen.textContent+" = ";
-      firstScreen.textContent=output;
-   }else  if(a[1]==="/"){
-      let output=Number(a[0]) / Number(firstScreen.textContent);
-      lastScreen.textContent=a[0] +" / "+ firstScreen.textContent+" = ";
-      firstScreen.textContent=output;
-   }else  if(a[1]==="%"){
-      let output=Number(a[0]) % Number(firstScreen.textContent);
-      lastScreen.textContent=a[0] +" % "+ firstScreen.textContent+" = ";
-      firstScreen.textContent=output;
-   }
+   let lastScreenArray=lastScreen.textContent.split(" ");
+   for (let i =1 ; i<lastScreenArray.length;i+=2){
+      console.log(lastScreenArray[i]);
+  }
 }
 
-equal.addEventListener("click",createHistory);
+// equal.onclick=()=>{
+//    let a =lastScreen.textContent.split(" ");
+//    if(a.length===2){
+//    if(a[1]==="+"){
+//       let output=Number(a[0]) + Number(firstScreen.textContent);
+//       lastScreen.textContent=a[0] +operator+ firstScreen.textContent+" = ";
+//       firstScreen.textContent=output;
+//    }else  if(a[1]==="-"){
+//       let output=Number(a[0]) - Number(firstScreen.textContent);
+//       lastScreen.textContent=a[0] +" - "+ firstScreen.textContent+" = ";
+//       firstScreen.textContent=output;
+//    }else  if(a[1]==="*"){
+//       let output=Number(a[0]) * Number(firstScreen.textContent);
+//       lastScreen.textContent=a[0] +" * "+ firstScreen.textContent+" = ";
+//       firstScreen.textContent=output;
+//    }else  if(a[1]==="/"){
+//       let output=Number(a[0]) / Number(firstScreen.textContent);
+//       lastScreen.textContent=a[0] +" / "+ firstScreen.textContent+" = ";
+//       firstScreen.textContent=output;
+//    }else  if(a[1]==="%"){
+//       let output=Number(a[0]) % Number(firstScreen.textContent);
+//       lastScreen.textContent=a[0] +" % "+ firstScreen.textContent+" = ";
+//       firstScreen.textContent=output;
+//    }
+//    createHistory();
+// }
+// }
 
 closeHistory.onclick=()=>{
    history.style.width="0px";
@@ -314,6 +127,7 @@ showHistory.onclick=()=>{
    closeHistory.classList.remove("visibility");
    calContainer.style.cssText="border-top-right-radius:0px ;border-bottom-right-radius:0px";
 };
+
 function createHistory(){
    let div=document.createElement("div");
    div.setAttribute("class","row-history");
