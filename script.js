@@ -26,45 +26,48 @@ for (let i=0;i<numbers.length;i++){
 }
 function operators(operator){ 
    if (lastScreen.textContent==="" && firstScreen.textContent!=="") {
-      lastScreen.textContent=lastScreen.textContent+ firstScreen.textContent+operator;
+      lastScreen.textContent=lastScreen.textContent+ firstScreen.textContent+" "+operator;
       firstScreen.textContent="0";
-   }else if(firstScreen.textContent==="0" || firstScreen.textContent==="" &&
-            lastScreen.textContent !==""){
-            let lastScreenArray=lastScreen.textContent.split(" ");
-            if(lastScreenArray[lastScreenArray.length-1]!==operator){
-            lastScreenArray[lastScreenArray.length-1]=operator;
-            lastScreen.textContent= lastScreenArray.join(" ");
    }
-   }else{
-      lastScreen.textContent+=" "+firstScreen.textContent+operator;
-      firstScreen.textContent="0";
-         
-   }
+       else if(lastScreen.textContent!=="" && firstScreen.textContent!==""){
+         let lastScreenArray=lastScreen.textContent.split(" ");
+         if(lastScreenArray[lastScreenArray.length-1]==="="){
+            lastScreen.textContent=firstScreen.textContent+" "+operator;
+            firstScreen.textContent="0";
+         }else if(lastScreenArray[lastScreenArray.length-1]!=="="){
+            lastScreen.textContent+=" "+firstScreen.textContent+" "+operator;
+            firstScreen.textContent="0";
+         }
+      } 
 }
 
 plus.onclick=()=>{
-   operators(" +");
+   operators("+");
 }
 
 minus.onclick=()=>{
-   operators(" -");
+   operators("-");
 }
 
 multiply.onclick=()=>{
-   operators(" *")
+   operators("*")
 }
 
 divide.onclick=()=>{
-   operators(" /")
+   operators("/")
 }
 
 modulus.onclick=()=>{
-   operators(" %")
+   operators("%")
 }
 
 clBtn.onclick=()=>{
    firstScreen.textContent="0";
    lastScreen.textContent="";
+let rowHistory=document.querySelectorAll(".row-history");
+   for (let i=0; i<rowHistory.length;i++){
+      rowHistory[i].remove();
+   }
 }
 
 returnArrow.onclick=()=>{
@@ -77,40 +80,64 @@ returnArrow.onclick=()=>{
    firstScreen.textContent=result;
 }
 
-equal.onclick=()=>{
+function calculateResult(){
    let lastScreenArray=lastScreen.textContent.split(" ");
    for (let i =1 ; i<lastScreenArray.length;i+=2){
-      console.log(lastScreenArray[i]);
-  }
+      if(i===1){
+         if(lastScreenArray[i]==="+"){
+            var result = Number(lastScreenArray[i-1])+Number(lastScreenArray[i+1]);
+         }
+         else if(lastScreenArray[i]==="-"){
+               var result = Number(lastScreenArray[i-1])-Number(lastScreenArray[i+1]);
+         }
+         else if(lastScreenArray[i]==="*"){
+               var result = Number(lastScreenArray[i-1])*Number(lastScreenArray[i+1]);
+         }
+         else if(lastScreenArray[i]==="/"){
+               var result = Number(lastScreenArray[i-1])/Number(lastScreenArray[i+1]);
+         }
+         else if(lastScreenArray[i]==="%"){
+               var result = Number(lastScreenArray[i-1])%Number(lastScreenArray[i+1]);
+         }
+   }else if (i>1 && i!==lastScreenArray.length-1){
+      if(lastScreenArray[i]==="+"){
+         result+= Number(lastScreenArray[i+1]);
+      }
+      else if(lastScreenArray[i]==="-"){
+         result-= Number(lastScreenArray[i+1]);
+      }
+      else if(lastScreenArray[i]==="*"){
+         result*= Number(lastScreenArray[i+1]);
+      }
+      else if(lastScreenArray[i]==="/"){
+         result/= Number(lastScreenArray[i+1]);
+      }
+      else if(lastScreenArray[i]==="%"){
+         result%= Number(lastScreenArray[i+1]);
+      }
+   }else{
+      firstScreen.textContent=result;
+   }
+}
 }
 
-// equal.onclick=()=>{
-//    let a =lastScreen.textContent.split(" ");
-//    if(a.length===2){
-//    if(a[1]==="+"){
-//       let output=Number(a[0]) + Number(firstScreen.textContent);
-//       lastScreen.textContent=a[0] +operator+ firstScreen.textContent+" = ";
-//       firstScreen.textContent=output;
-//    }else  if(a[1]==="-"){
-//       let output=Number(a[0]) - Number(firstScreen.textContent);
-//       lastScreen.textContent=a[0] +" - "+ firstScreen.textContent+" = ";
-//       firstScreen.textContent=output;
-//    }else  if(a[1]==="*"){
-//       let output=Number(a[0]) * Number(firstScreen.textContent);
-//       lastScreen.textContent=a[0] +" * "+ firstScreen.textContent+" = ";
-//       firstScreen.textContent=output;
-//    }else  if(a[1]==="/"){
-//       let output=Number(a[0]) / Number(firstScreen.textContent);
-//       lastScreen.textContent=a[0] +" / "+ firstScreen.textContent+" = ";
-//       firstScreen.textContent=output;
-//    }else  if(a[1]==="%"){
-//       let output=Number(a[0]) % Number(firstScreen.textContent);
-//       lastScreen.textContent=a[0] +" % "+ firstScreen.textContent+" = ";
-//       firstScreen.textContent=output;
-//    }
-//    createHistory();
-// }
-// }
+equal.onclick=()=>{
+   let lastScreenArray=lastScreen.textContent.split(" ");
+   if (lastScreenArray.length%2===0 && firstScreen.textContent==="" || firstScreen.textContent==="0"){
+      lastScreenArray.pop();
+      lastScreenArray.push("=");
+      lastScreen.textContent=lastScreenArray.join(" ");
+      calculateResult();
+   }else {
+      operators(lastScreenArray[lastScreenArray.length-1])
+      lastScreenArray=lastScreen.textContent.split(" ");
+      lastScreenArray.pop();
+      lastScreenArray.push("=");
+      lastScreen.textContent=lastScreenArray.join(" ");
+      calculateResult();
+   }
+   createHistory();
+}
 
 closeHistory.onclick=()=>{
    history.style.width="0px";
